@@ -124,21 +124,22 @@ const prefs = await invoke("load_preferences");
 ### Internationalization (i18n)
 
 ```typescript
-// ✅ GOOD: Use useTranslation hook in React components
-import { useTranslation } from 'react-i18next'
+// ✅ GOOD: Use useLingui hook in React components
+import { useLingui } from '@lingui/react'
+import { msg } from '@lingui/core/macro'
 
 function MyComponent() {
-  const { t } = useTranslation()
-  return <h1>{t('myFeature.title')}</h1>
+  const { i18n } = useLingui()
+  return <h1>{i18n._(msg`myFeature.title`)}</h1>
 }
 
 // ✅ GOOD: Non-React contexts - bind for many calls, or use directly
-import i18n from '@/i18n/config'
-const t = i18n.t.bind(i18n)  // Bind once for many translations
-i18n.t('key')                 // Or call directly for occasional use
+import { i18n } from '@/i18n/config'
+const t = i18n._.bind(i18n)  // Bind once for many translations
+i18n._(msg`key`)                 // Or call directly for occasional use
 ```
 
-- **Translations**: All strings in `/locales/*.json`
+- **Translations**: All strings in `/locales/*.po` (source) and `/locales/*.ts` (compiled)
 - **RTL Support**: Use CSS logical properties (`text-start` not `text-left`)
 - **Adding strings**: See `docs/developer/i18n-patterns.md`
 

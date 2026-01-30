@@ -11,7 +11,7 @@ Most Tauri starters give you a blank canvas. This template gives you a **working
 - **File-based routing** with TanStack Router (full type safety)
 - **Multi-window architecture** already working (quick pane with global shortcut as a demo)
 - **Cross-platform ready** with platform-specific title bars, window controls, and native menu integration
-- **i18n built-in** with RTL support (react-i18next)
+- **i18n built-in** with RTL support (Lingui.js)
 - **Automated releases** via Release-Please (conventional commits → GitHub releases)
 - **Git hooks** with Lefthook + Commitlint (auto-fix, type checking)
 
@@ -27,6 +27,7 @@ Most Tauri starters give you a blank canvas. This template gives you a **working
 | Backend  | Tauri v2, Rust                                             |
 | Testing  | Vitest v4, Testing Library                                 |
 | Quality  | Biome, ast-grep, knip, jscpd, clippy, Lefthook, Commitlint |
+| i18n     | Lingui.js (macros)                                         |
 
 ## What's Already Built
 

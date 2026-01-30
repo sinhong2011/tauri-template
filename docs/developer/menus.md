@@ -6,7 +6,7 @@ Cross-platform native menu system built with JavaScript for i18n support, integr
 
 This app builds menus from **JavaScript** using Tauri's JS Menu API (`@tauri-apps/api/menu`). This enables:
 
-- Runtime translation via react-i18next
+- Runtime translation via Lingui.js
 - Dynamic menu rebuilding when language changes
 - Direct integration with React state (Zustand)
 
@@ -44,11 +44,11 @@ import {
   Submenu,
   PredefinedMenuItem,
 } from '@tauri-apps/api/menu'
-import i18n from '@/i18n/config'
+import { i18n } from '@/i18n/config'
 import { useUIStore } from '@/store/ui-store'
 
 export async function buildAppMenu(): Promise<Menu> {
-  const t = i18n.t.bind(i18n)
+  const t = i18n._.bind(i18n)
 
   const appSubmenu = await Submenu.new({
     text: APP_NAME,
@@ -82,7 +82,7 @@ Menus are automatically rebuilt when the language changes:
 
 ```typescript
 export function setupMenuLanguageListener(): void {
-  i18n.on('languageChanged', async () => {
+  i18n.on('activate', async () => {
     await buildAppMenu()
   })
 }
@@ -128,11 +128,10 @@ const viewSubmenu = await Submenu.new({
 
 ### Step 1: Add Translation Key
 
-```json
-// locales/en.json
-{
-  "menu.myNewAction": "My New Action"
-}
+```jsx
+// locales/en/messages.po
+msgid "menu.myNewAction"
+msgstr "My New Action"
 ```
 
 ### Step 2: Add to Menu Builder

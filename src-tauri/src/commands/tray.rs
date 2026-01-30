@@ -63,7 +63,7 @@ pub fn init_tray(app: &AppHandle) -> Result<(), String> {
 
     // Build the tray icon with the icon set during construction
     log::info!("Building tray icon...");
-    let  tray_builder = TrayIconBuilder::with_id(TRAY_ICON_ID)
+    let mut tray_builder = TrayIconBuilder::with_id(TRAY_ICON_ID)
         .menu(&menu)
         .icon(icon)
         .show_menu_on_left_click(false); // Right-click for menu, left-click toggles window

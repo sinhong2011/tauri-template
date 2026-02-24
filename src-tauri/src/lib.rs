@@ -45,32 +45,32 @@ pub fn run() {
     // Build with common plugins
     let mut app_builder = tauri::Builder::default();
 
-            // Single instance plugin must be registered FIRST
-            // When user tries to open a second instance, toggle window visibility
-            #[cfg(desktop)]
-            {
-                app_builder = app_builder.plugin(tauri_plugin_single_instance::init(|app, _args, _cwd| {
-                    use commands::tray::{show_main_window, hide_main_window};
+    // Single instance plugin must be registered FIRST
+    // When user tries to open a second instance, toggle window visibility
+    #[cfg(desktop)]
+    {
+        app_builder = app_builder.plugin(tauri_plugin_single_instance::init(|app, _args, _cwd| {
+            use commands::tray::{show_main_window, hide_main_window};
 
-                    if let Some(window) = app.get_webview_window("main") {
-                        // Toggle window visibility: show if hidden, hide if visible
-                        match window.is_visible() {
-                            Ok(true) => {
-                                let _ = hide_main_window(app);
-                            }
-                            Ok(false) => {
-                                let _ = show_main_window(app);
-                            }
-                            Err(e) => {
-                                log::error!("Failed to check window visibility: {e}");
-                                // Fallback: try to show the window
-                                let _ = window.set_focus();
-                                let _ = window.unminimize();
-                            }
-                        }
+            if let Some(window) = app.get_webview_window("main") {
+                // Toggle window visibility: show if hidden, hide if visible
+                match window.is_visible() {
+                    Ok(true) => {
+                        let _ = hide_main_window(app);
                     }
-                }));
+                    Ok(false) => {
+                        let _ = show_main_window(app);
+                    }
+                    Err(e) => {
+                        log::error!("Failed to check window visibility: {e}");
+                        // Fallback: try to show the window
+                        let _ = window.set_focus();
+                        let _ = window.unminimize();
+                    }
+                }
             }
+        }));
+    }
 
     // Window state plugin - saves/restores window position and size
     // Note: Only applies to windows listed in capabilities (main window only, not quick-pane)
@@ -86,7 +86,9 @@ pub fn run() {
     // Updater plugin for in-app updates
     #[cfg(desktop)]
     {
-        app_builder = app_builder.plugin(tauri_plugin_updater::Builder::new().build());
+        if !cfg!(debug_assertions) {
+            app_builder = app_builder.plugin(tauri_plugin_updater::Builder::new().build());
+        }
     }
 
     // Determine log level from environment variable or use defaults
@@ -97,20 +99,24 @@ pub fn run() {
         .plugin(tauri_plugin_notification::init())
         .plugin(
             tauri_plugin_log::Builder::new()
+                .clear_format()
                 // Use level from TAURI_LOG_LEVEL env var, or default based on build type
                 .level(log_level)
-                // Use custom formatter with syntax highlighting for terminal output
-                .format(utils::logger::format_log)
+                // Keep noisy dependencies quieter unless explicitly raised
+                .level_for("tauri", log::LevelFilter::Warn)
+                .level_for("tauri_plugin_updater", log::LevelFilter::Warn)
                 .targets([
                     // Always log to stdout for development with colorized output
-                    tauri_plugin_log::Target::new(tauri_plugin_log::TargetKind::Stdout),
+                    tauri_plugin_log::Target::new(tauri_plugin_log::TargetKind::Stdout)
+                        .format(utils::logger::format_log),
                     // Log to webview console for development
-                    tauri_plugin_log::Target::new(tauri_plugin_log::TargetKind::Webview),
-                    // Log to system logs on macOS (appears in Console.app)
-                    #[cfg(target_os = "macos")]
+                    tauri_plugin_log::Target::new(tauri_plugin_log::TargetKind::Webview)
+                        .format(utils::logger::format_log_plain),
+                    // JSON log file in the app log directory
                     tauri_plugin_log::Target::new(tauri_plugin_log::TargetKind::LogDir {
-                        file_name: None,
-                    }),
+                        file_name: Some("backend".into()),
+                    })
+                    .format(utils::logger::format_log_json),
                 ])
                 .build(),
         );
@@ -152,22 +158,30 @@ pub fn run() {
             // Load saved preferences and register the quick pane shortcut
             #[cfg(desktop)]
             {
-                let saved_shortcut = commands::preferences::load_quick_pane_shortcut(app.handle());
-                let shortcut_to_register = saved_shortcut
-                    .as_deref()
-                    .unwrap_or(DEFAULT_QUICK_PANE_SHORTCUT);
+                if commands::quick_pane::is_quick_pane_enabled() {
+                    let saved_shortcut = commands::preferences::load_quick_pane_shortcut(app.handle());
+                    let shortcut_to_register = saved_shortcut
+                        .as_deref()
+                        .unwrap_or(DEFAULT_QUICK_PANE_SHORTCUT);
 
-                log::info!("Registering quick pane shortcut: {shortcut_to_register}");
-                commands::quick_pane::register_quick_pane_shortcut(
-                    app.handle(),
-                    shortcut_to_register,
-                )?;
+                    log::info!("Registering quick pane shortcut: {shortcut_to_register}");
+                    commands::quick_pane::register_quick_pane_shortcut(
+                        app.handle(),
+                        shortcut_to_register,
+                    )?;
+                } else {
+                    log::info!("Quick pane is disabled; skipping shortcut registration");
+                }
             }
 
             // Create the quick pane window (hidden) - must be done on main thread
-            if let Err(e) = commands::quick_pane::init_quick_pane(app.handle()) {
-                log::error!("Failed to create quick pane: {e}");
-                // Non-fatal: app can still run without quick pane
+            if commands::quick_pane::is_quick_pane_enabled() {
+                if let Err(e) = commands::quick_pane::init_quick_pane(app.handle()) {
+                    log::error!("Failed to create quick pane: {e}");
+                    // Non-fatal: app can still run without quick pane
+                }
+            } else {
+                log::info!("Quick pane is disabled; skipping window initialization");
             }
 
             // Initialize system tray icon (desktop only)

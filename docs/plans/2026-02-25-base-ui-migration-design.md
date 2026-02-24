@@ -10,10 +10,33 @@ Full migration of the template's UI component library from Radix UI primitives t
 
 ## Scope
 
+- Add CSS foundation: `shadcn/tailwind.css` import (custom Tailwind v4 variants for Base UI states), scrollbar variables, Figtree font
 - Migrate 20 Radix-dependent components → Base UI primitives
 - Replace lucide-react icons → hugeicons across 19 files
-- Port 4 useful new components from minikyu (collapsible, progress, number-field, field update)
+- Port 3 useful new components from minikyu (collapsible, progress, field update)
 - Remove all `@radix-ui/react-*` packages and `lucide-react` from dependencies
+
+## 0. CSS Foundation
+
+### shadcn/tailwind.css Integration
+
+Import `shadcn/tailwind.css` in `App.css`. This file provides custom Tailwind v4 variants that Base UI components depend on:
+- `data-open` / `data-closed` — dialog/sheet/collapsible states
+- `data-checked` / `data-unchecked` — checkbox/radio states
+- `data-selected`, `data-disabled`, `data-active` — item/tab states
+- `data-horizontal` / `data-vertical` — separator/toggle-group orientation
+- `no-scrollbar` utility
+- Accordion keyframes
+
+Without this, all Base UI state-driven styling (animations, visibility) breaks.
+
+### Scrollbar Variables
+
+Add `--scrollbar-size`, `--scrollbar-thumb`, `--scrollbar-thumb-hover`, `--scrollbar-thumb-active` to both `:root` and `.dark` in `theme-variables.css`. Port the custom scrollbar CSS from minikyu's `global.css`.
+
+### Figtree Font
+
+Configure `@fontsource-variable/figtree` import and set `--font-sans: "Figtree Variable", sans-serif` in the `@theme inline` block. Package already installed in Phase 1.
 
 ## 1. Icon System
 
@@ -83,7 +106,6 @@ External library components (icon updates only): command (cmdk), calendar/date-p
 
 - `collapsible.tsx` — expandable content sections
 - `progress.tsx` — progress bars
-- `number-field.tsx` — numeric input with increment/decrement
 
 ## 3. Consumer Updates & Cleanup
 

@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "shadcn/tailwind.css";
 @import "./theme-variables.css";
 
 @custom-variant dark (&:is(.dark *));
@@ -30,11 +31,7 @@
   }
 
   body {
-    @apply text-foreground;
-    font-family:
-      -apple-system, "Segoe UI", "Roboto", "Noto Sans CJK SC", "Noto Sans CJK TC", "Noto Sans JP", "Noto Sans KR", "Microsoft YaHei", "Hiragino Sans GB", "PingFang SC", "Hiragino Kaku Gothic Pro", "Malgun Gothic", sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
+    @apply font-sans bg-background text-foreground;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     user-select: none;
@@ -46,6 +43,36 @@
     min-width: 100vw;
     overflow: hidden;
     position: relative;
+  }
+
+  :where(*):not(.no-scrollbar) {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) transparent;
+  }
+  :where(*):not(.no-scrollbar)::-webkit-scrollbar {
+    width: var(--scrollbar-size);
+    height: var(--scrollbar-size);
+  }
+  :where(*):not(.no-scrollbar)::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  :where(*):not(.no-scrollbar)::-webkit-scrollbar-thumb {
+    min-height: 24px;
+    border: 3px solid transparent;
+    border-radius: 999px;
+    background: var(--scrollbar-thumb);
+    background-clip: padding-box;
+  }
+  :where(*):not(.no-scrollbar)::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+    background-clip: padding-box;
+  }
+  :where(*):not(.no-scrollbar)::-webkit-scrollbar-thumb:active {
+    background: var(--scrollbar-thumb-active);
+    background-clip: padding-box;
+  }
+  :where(*):not(.no-scrollbar)::-webkit-scrollbar-corner {
+    background: transparent;
   }
 
   svg {

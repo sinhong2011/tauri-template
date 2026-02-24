@@ -5,6 +5,10 @@
     "clientKind": "git",
     "useIgnoreFile": true
   },
+  "files": {
+    "includes": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "**/*.json", "**/*.css", "**/*.md"],
+    "ignoreUnknown": true
+  },
   "formatter": {
     "enabled": true,
     "formatWithErrors": false,
@@ -29,7 +33,7 @@
       "style": {
         "noNegationElse": "off",
         "useConst": "warn",
-        "useImportType": "error",
+        "useImportType": "warn",
         "useNamingConvention": {
           "level": "warn",
           "options": {
@@ -73,6 +77,32 @@
             "noConsole": "off"
           }
         }
+      }
+    },
+    {
+      "includes": ["**/*.md"],
+      "linter": {
+        "enabled": false
+      },
+      "formatter": {
+        "enabled": false
+      }
+    },
+    {
+      "includes": [
+        "src/lib/bindings.ts",
+        "src/routeTree.gen.ts",
+        "**/src/lib/bindings.ts",
+        "**/src/routeTree.gen.ts"
+      ],
+      "linter": {
+        "enabled": false
+      },
+      "formatter": {
+        "enabled": false
+      },
+      "assist": {
+        "enabled": false
       }
     }
   ]

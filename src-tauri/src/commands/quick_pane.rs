@@ -19,6 +19,9 @@ const QUICK_PANE_LABEL: &str = "quick-pane";
 const QUICK_PANE_WIDTH: f64 = 500.0;
 const QUICK_PANE_HEIGHT: f64 = 72.0;
 
+/// Feature flag for quick pane behavior.
+const QUICK_PANE_ENABLED: bool = false;
+
 /// Tracks the currently registered quick pane shortcut for selective unregistration.
 /// This allows us to unregister only our shortcut without affecting other shortcuts.
 static CURRENT_QUICK_PANE_SHORTCUT: Mutex<Option<String>> = Mutex::new(None);
@@ -400,4 +403,9 @@ pub fn update_quick_pane_shortcut(app: AppHandle, shortcut: Option<String>) -> R
     }
 
     Ok(())
+}
+
+/// Returns whether quick pane feature is enabled.
+pub fn is_quick_pane_enabled() -> bool {
+    QUICK_PANE_ENABLED
 }

@@ -25,6 +25,7 @@ pub static FILENAME_PATTERN: LazyLock<Regex> = LazyLock::new(|| {
 /// Application preferences that persist to disk.
 /// Only contains settings that should be saved between sessions.
 #[derive(Debug, Clone, Serialize, Deserialize, Type)]
+#[serde(default)]
 pub struct AppPreferences {
     pub theme: String,
     /// Global shortcut for quick pane (e.g., "CommandOrControl+Shift+.")

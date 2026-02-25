@@ -35,7 +35,7 @@ import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from '@/components/animate-ui/primitives/radix/collapsible';
+} from '@/components/ui/collapsible';
 import {
   DropdownMenu,
   DropdownMenuContent,

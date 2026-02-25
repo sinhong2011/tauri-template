@@ -22,7 +22,7 @@ import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from '@/components/animate-ui/primitives/radix/collapsible';
+} from '@/components/ui/collapsible';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -340,11 +340,11 @@ export function ComponentsPage() {
             </CardHeader>
             <CardContent>
               <Collapsible className="w-full">
-                <CollapsibleTrigger asChild>
-                  <Button variant="outline" className="w-full justify-between">
-                    {_(msg`Toggle Content`)}
-                    <HugeiconsIcon icon={ArrowDown01Icon} className="size-4 transition-transform duration-300 group-data-[state=open]/collapsible:rotate-180" />
-                  </Button>
+                <CollapsibleTrigger
+                  render={<Button variant="outline" className="w-full justify-between" />}
+                >
+                  {_(msg`Toggle Content`)}
+                  <HugeiconsIcon icon={ArrowDown01Icon} className="size-4 transition-transform duration-300 data-[panel-open]:rotate-180" />
                 </CollapsibleTrigger>
                 <CollapsibleContent>
                   <div className="mt-4 rounded-lg border bg-muted/50 p-4">

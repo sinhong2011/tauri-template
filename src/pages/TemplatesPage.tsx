@@ -1,5 +1,3 @@
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
 import {
   ArrowRight01Icon,
   CommandLineIcon,
@@ -13,6 +11,8 @@ import {
   SparklesIcon,
 } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
+import { msg } from '@lingui/core/macro';
+import { useLingui } from '@lingui/react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {

@@ -1,5 +1,3 @@
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
 import {
   BookOpen01Icon,
   CommandIcon,
@@ -11,6 +9,8 @@ import {
   SparklesIcon,
 } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
+import { msg } from '@lingui/core/macro';
+import { useLingui } from '@lingui/react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 

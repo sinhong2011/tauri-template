@@ -1,5 +1,5 @@
-import type { MessageDescriptor } from '@lingui/core';
 import type { IconSvgElement } from '@hugeicons/react';
+import type { MessageDescriptor } from '@lingui/core';
 
 export interface AppCommand {
   id: string;

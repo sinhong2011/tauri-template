@@ -1,6 +1,3 @@
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
-import { Link } from '@tanstack/react-router';
 import {
   ArrowRight01Icon,
   Delete01Icon,
@@ -14,6 +11,9 @@ import {
   Share01Icon,
 } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
+import { msg } from '@lingui/core/macro';
+import { useLingui } from '@lingui/react';
+import { Link } from '@tanstack/react-router';
 import type * as React from 'react';
 import {
   Sidebar,
@@ -32,17 +32,13 @@ import {
   SidebarMenuSubItem,
 } from '@/components/animate-ui/components/radix/sidebar';
 import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@/components/ui/collapsible';
-import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/animate-ui/primitives/radix/dropdown-menu';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { useCommandContext } from '@/hooks/use-command-context';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { executeCommand } from '@/lib/commands';
@@ -169,7 +165,10 @@ export function LeftSideBar({ children, className }: LeftSideBarProps) {
                       <CollapsibleTrigger className="w-full">
                         <HugeiconsIcon icon={project.icon} />
                         <span>{project.name}</span>
-                        <HugeiconsIcon icon={ArrowRight01Icon} className="ml-auto h-4 w-4 transition-transform duration-300 group-data-[state=open]/collapsible:rotate-90" />
+                        <HugeiconsIcon
+                          icon={ArrowRight01Icon}
+                          className="ml-auto h-4 w-4 transition-transform duration-300 group-data-[state=open]/collapsible:rotate-90"
+                        />
                       </CollapsibleTrigger>
                     </SidebarMenuButton>
                     <DropdownMenu>

@@ -1,5 +1,3 @@
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
 import {
   AlertCircleIcon,
   ArrowDown01Icon,
@@ -11,6 +9,8 @@ import {
   UserIcon,
 } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
+import { msg } from '@lingui/core/macro';
+import { useLingui } from '@lingui/react';
 import {
   Tabs,
   TabsContent,
@@ -18,11 +18,6 @@ import {
   TabsTrigger,
 } from '@/components/animate-ui/components/animate/tabs';
 import { Switch } from '@/components/animate-ui/components/radix/switch';
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@/components/ui/collapsible';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -42,6 +37,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
@@ -344,7 +340,10 @@ export function ComponentsPage() {
                   render={<Button variant="outline" className="w-full justify-between" />}
                 >
                   {_(msg`Toggle Content`)}
-                  <HugeiconsIcon icon={ArrowDown01Icon} className="size-4 transition-transform duration-300 data-[panel-open]:rotate-180" />
+                  <HugeiconsIcon
+                    icon={ArrowDown01Icon}
+                    className="size-4 transition-transform duration-300 data-[panel-open]:rotate-180"
+                  />
                 </CollapsibleTrigger>
                 <CollapsibleContent>
                   <div className="mt-4 rounded-lg border bg-muted/50 p-4">

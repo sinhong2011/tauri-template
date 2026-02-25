@@ -1,7 +1,7 @@
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
 import { PanelLeftCloseIcon, SidebarLeft01Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
+import { msg } from '@lingui/core/macro';
+import { useLingui } from '@lingui/react';
 import { CommandSearchButton } from '@/components/titlebar/CommandSearchButton';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';

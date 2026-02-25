@@ -1,7 +1,7 @@
-import { msg } from '@lingui/core/macro';
-import { useLingui } from '@lingui/react';
 import { FlashIcon, PaintBrush01Icon, Settings01Icon } from '@hugeicons/core-free-icons';
 import { HugeiconsIcon } from '@hugeicons/react';
+import { msg } from '@lingui/core/macro';
+import { useLingui } from '@lingui/react';
 import { useState } from 'react';
 import {
   Sidebar,

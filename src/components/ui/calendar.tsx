@@ -130,11 +130,7 @@ function Calendar({
           }
 
           return (
-            <HugeiconsIcon
-              icon={ArrowDown01Icon}
-              className={cn('size-4', className)}
-              {...props}
-            />
+            <HugeiconsIcon icon={ArrowDown01Icon} className={cn('size-4', className)} {...props} />
           );
         },
         DayButton: CalendarDayButton,

@@ -90,6 +90,8 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
     };
 
     return (
+      // biome-ignore lint/a11y/noStaticElementInteractions: click delegates focus to input
+      // biome-ignore lint/a11y/useKeyWithClickEvents: keyboard handled by inner input
       <div
         ref={ref}
         className={cn(

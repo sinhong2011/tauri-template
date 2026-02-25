@@ -191,9 +191,10 @@ export function ShortcutPicker({
 
   return (
     <div className="flex items-center gap-2">
+      {/* biome-ignore lint/a11y/useSemanticElements: custom shortcut picker input */}
       <div
         ref={inputRef}
-        role="button"
+        role="textbox"
         tabIndex={disabled ? -1 : 0}
         onClick={handleClick}
         onKeyDown={(e) => {

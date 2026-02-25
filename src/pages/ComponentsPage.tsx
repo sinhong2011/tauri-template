@@ -1,15 +1,16 @@
+import {
+  AlertCircleIcon,
+  ArrowDown01Icon,
+  CheckmarkCircle01Icon,
+  Layers01Icon,
+  Mail01Icon,
+  MoreHorizontalIcon,
+  Settings01Icon,
+  UserIcon,
+} from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
-import {
-  AlertCircle,
-  CheckCircle2,
-  ChevronDown,
-  Layers,
-  Mail,
-  MoreHorizontal,
-  Settings,
-  User,
-} from 'lucide-react';
 import {
   Tabs,
   TabsContent,
@@ -17,11 +18,6 @@ import {
   TabsTrigger,
 } from '@/components/animate-ui/components/animate/tabs';
 import { Switch } from '@/components/animate-ui/components/radix/switch';
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from '@/components/animate-ui/primitives/radix/collapsible';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -41,6 +37,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
@@ -192,7 +189,7 @@ export function ComponentsPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <Alert>
-                <Mail className="h-4 w-4" />
+                <HugeiconsIcon icon={Mail01Icon} className="h-4 w-4" />
                 <AlertTitle>{_(msg`Heads up!`)}</AlertTitle>
                 <AlertDescription>
                   {_(msg`You can add components to your app using the shadcn CLI.`)}
@@ -200,7 +197,7 @@ export function ComponentsPage() {
               </Alert>
 
               <Alert variant="destructive">
-                <AlertCircle className="h-4 w-4" />
+                <HugeiconsIcon icon={AlertCircleIcon} className="h-4 w-4" />
                 <AlertTitle>{_(msg`Error`)}</AlertTitle>
                 <AlertDescription>
                   {_(msg`Your session has expired. Please log in again.`)}
@@ -208,7 +205,7 @@ export function ComponentsPage() {
               </Alert>
 
               <Alert className="border-green-500 text-green-700 [&>svg]:text-green-700">
-                <CheckCircle2 className="h-4 w-4" />
+                <HugeiconsIcon icon={CheckmarkCircle01Icon} className="h-4 w-4" />
                 <AlertTitle>{_(msg`Success`)}</AlertTitle>
                 <AlertDescription>
                   {_(msg`Your changes have been saved successfully.`)}
@@ -245,15 +242,15 @@ export function ComponentsPage() {
               <div className="relative">
                 <TabsList className="grid w-full grid-cols-3">
                   <TabsTrigger value="account">
-                    <User className="mr-2 size-4" />
+                    <HugeiconsIcon icon={UserIcon} className="mr-2 size-4" />
                     {_(msg`Account`)}
                   </TabsTrigger>
                   <TabsTrigger value="settings">
-                    <Settings className="mr-2 size-4" />
+                    <HugeiconsIcon icon={Settings01Icon} className="mr-2 size-4" />
                     {_(msg`Settings`)}
                   </TabsTrigger>
                   <TabsTrigger value="advanced">
-                    <Layers className="mr-2 size-4" />
+                    <HugeiconsIcon icon={Layers01Icon} className="mr-2 size-4" />
                     {_(msg`Advanced`)}
                   </TabsTrigger>
                 </TabsList>
@@ -307,21 +304,21 @@ export function ComponentsPage() {
                 <DropdownMenuTrigger asChild>
                   <Button variant="outline" className="gap-2">
                     {_(msg`Open Menu`)}
-                    <ChevronDown className="size-4" />
+                    <HugeiconsIcon icon={ArrowDown01Icon} className="size-4" />
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-56">
                   <DropdownMenuItem>
-                    <User className="mr-2 size-4" />
+                    <HugeiconsIcon icon={UserIcon} className="mr-2 size-4" />
                     {_(msg`Profile`)}
                   </DropdownMenuItem>
                   <DropdownMenuItem>
-                    <Settings className="mr-2 size-4" />
+                    <HugeiconsIcon icon={Settings01Icon} className="mr-2 size-4" />
                     {_(msg`Settings`)}
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem>
-                    <MoreHorizontal className="mr-2 size-4" />
+                    <HugeiconsIcon icon={MoreHorizontalIcon} className="mr-2 size-4" />
                     {_(msg`More Options`)}
                   </DropdownMenuItem>
                 </DropdownMenuContent>
@@ -339,11 +336,14 @@ export function ComponentsPage() {
             </CardHeader>
             <CardContent>
               <Collapsible className="w-full">
-                <CollapsibleTrigger asChild>
-                  <Button variant="outline" className="w-full justify-between">
-                    {_(msg`Toggle Content`)}
-                    <ChevronDown className="size-4 transition-transform duration-300 group-data-[state=open]/collapsible:rotate-180" />
-                  </Button>
+                <CollapsibleTrigger
+                  render={<Button variant="outline" className="w-full justify-between" />}
+                >
+                  {_(msg`Toggle Content`)}
+                  <HugeiconsIcon
+                    icon={ArrowDown01Icon}
+                    className="size-4 transition-transform duration-300 data-[panel-open]:rotate-180"
+                  />
                 </CollapsibleTrigger>
                 <CollapsibleContent>
                   <div className="mt-4 rounded-lg border bg-muted/50 p-4">

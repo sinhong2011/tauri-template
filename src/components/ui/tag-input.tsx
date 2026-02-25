@@ -1,4 +1,5 @@
-import { X } from 'lucide-react';
+import { Cancel01Icon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import * as React from 'react';
 
 import { cn } from '@/lib/utils';
@@ -89,6 +90,8 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
     };
 
     return (
+      // biome-ignore lint/a11y/noStaticElementInteractions: click delegates focus to input
+      // biome-ignore lint/a11y/useKeyWithClickEvents: keyboard handled by inner input
       <div
         ref={ref}
         className={cn(
@@ -113,7 +116,7 @@ const TagInput = React.forwardRef<HTMLDivElement, TagInputProps>(
                   className="ml-1 hover:bg-destructive/20 rounded-sm p-0.5 transition-colors"
                   aria-label={`Remove ${tag.text} tag`}
                 >
-                  <X className="size-3" />
+                  <HugeiconsIcon icon={Cancel01Icon} className="size-3" />
                 </button>
               )}
             </Badge>

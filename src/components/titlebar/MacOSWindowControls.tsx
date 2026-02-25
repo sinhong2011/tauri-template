@@ -113,6 +113,7 @@ export function MacOSWindowControls({ className, ...props }: MacOSWindowControls
   };
 
   return (
+    // biome-ignore lint/a11y/noStaticElementInteractions: window controls container needs mouse events for hover state
     <div
       className={cn(
         'flex items-center gap-2 px-3 text-black active:text-black dark:text-black',

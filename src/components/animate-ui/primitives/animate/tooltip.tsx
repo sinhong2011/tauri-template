@@ -281,6 +281,7 @@ function TooltipOverlay() {
               top: 0,
               left: 0,
               zIndex: 50,
+              // biome-ignore lint/style/noNonNullAssertion: x/y are always set when rendering
               transform: `translate3d(${x!}px, ${y!}px, 0)`,
             }}
           >

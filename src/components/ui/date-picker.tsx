@@ -1,4 +1,5 @@
-import { ChevronDownIcon } from 'lucide-react';
+import { ArrowDown01Icon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import * as React from 'react';
 
 import { Button } from '@/components/ui/button';
@@ -17,14 +18,16 @@ function DatePicker({ value, onChange, placeholder = 'Select date', className }:
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
-        <Button
-          variant="outline"
-          className={`w-full justify-between font-normal ${className || ''}`}
-        >
-          {value ? value.toLocaleDateString() : placeholder}
-          <ChevronDownIcon className="size-4" />
-        </Button>
+      <PopoverTrigger
+        render={
+          <Button
+            variant="outline"
+            className={`w-full justify-between font-normal ${className || ''}`}
+          />
+        }
+      >
+        {value ? value.toLocaleDateString() : placeholder}
+        <HugeiconsIcon icon={ArrowDown01Icon} className="size-4" />
       </PopoverTrigger>
       <PopoverContent className="w-auto overflow-hidden p-0" align="start">
         <Calendar

@@ -1,6 +1,7 @@
+import { PanelLeftCloseIcon, SidebarLeft01Icon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
-import { PanelLeft, PanelLeftClose } from 'lucide-react';
 import { CommandSearchButton } from '@/components/titlebar/CommandSearchButton';
 import { MacOSWindowControls } from '@/components/titlebar/MacOSWindowControls';
 import { WindowsWindowControls } from '@/components/titlebar/WindowsWindowControls';
@@ -41,9 +42,9 @@ export function WindowTitleBar({ className, platform, onOpenCommandPalette }: Wi
           title={_(leftSidebarVisible ? msg`Hide Left Sidebar` : msg`Show Left Sidebar`)}
         >
           {leftSidebarVisible ? (
-            <PanelLeftClose className="h-4 w-4" />
+            <HugeiconsIcon icon={PanelLeftCloseIcon} className="h-4 w-4" />
           ) : (
-            <PanelLeft className="h-4 w-4" />
+            <HugeiconsIcon icon={SidebarLeft01Icon} className="h-4 w-4" />
           )}
         </Button>
       </div>

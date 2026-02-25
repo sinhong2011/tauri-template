@@ -1,17 +1,18 @@
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import {
-  ArrowRight,
-  Boxes,
-  Copy,
-  ExternalLink,
-  FileCode,
-  FolderOpen,
-  Github,
-  Layout,
-  Sparkles,
-  Terminal,
-} from 'lucide-react';
+  ArrowRight01Icon,
+  CommandLineIcon,
+  Copy01Icon,
+  DocumentCodeIcon,
+  FolderOpenIcon,
+  Github01Icon,
+  LayoutIcon,
+  LinkSquare01Icon,
+  PackageIcon,
+  SparklesIcon,
+} from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -31,7 +32,7 @@ export function TemplatesPage() {
       id: 'starter',
       name: _(msg`Starter Template`),
       description: _(msg`Minimal setup with essential features. Perfect for new projects.`),
-      icon: Layout,
+      icon: LayoutIcon,
       tags: ['Minimal', 'Essential'],
       features: [
         _(msg`React 19 + TypeScript`),
@@ -44,7 +45,7 @@ export function TemplatesPage() {
       id: 'full',
       name: _(msg`Full-Featured Template`),
       description: _(msg`Complete setup with all features enabled. Best for production apps.`),
-      icon: Boxes,
+      icon: PackageIcon,
       tags: ['Complete', 'Production'],
       features: [
         _(msg`TanStack Query + Router`),
@@ -57,7 +58,7 @@ export function TemplatesPage() {
       id: 'plugin',
       name: _(msg`Plugin Template`),
       description: _(msg`Template for building Tauri plugins with example implementations.`),
-      icon: FileCode,
+      icon: DocumentCodeIcon,
       tags: ['Plugin', 'Rust'],
       features: [
         _(msg`Plugin Architecture`),
@@ -108,7 +109,7 @@ export function TemplatesPage() {
             <CardHeader>
               <div className="flex items-start justify-between">
                 <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                  <template.icon className="size-6 text-primary" />
+                  <HugeiconsIcon icon={template.icon} className="size-6 text-primary" />
                 </div>
                 <div className="flex gap-1">
                   {template.tags.map((tag) => (
@@ -128,7 +129,7 @@ export function TemplatesPage() {
                     key={feature}
                     className="flex items-center gap-2 text-sm text-muted-foreground"
                   >
-                    <Sparkles className="size-3.5 text-primary" />
+                    <HugeiconsIcon icon={SparklesIcon} className="size-3.5 text-primary" />
                     {feature}
                   </li>
                 ))}
@@ -136,11 +137,11 @@ export function TemplatesPage() {
             </CardContent>
             <CardFooter className="gap-2">
               <Button className="flex-1 gap-2">
-                <Copy className="size-4" />
+                <HugeiconsIcon icon={Copy01Icon} className="size-4" />
                 {_(msg`Use Template`)}
               </Button>
               <Button variant="outline" size="icon">
-                <ExternalLink className="size-4" />
+                <HugeiconsIcon icon={LinkSquare01Icon} className="size-4" />
               </Button>
             </CardFooter>
           </Card>
@@ -152,7 +153,7 @@ export function TemplatesPage() {
         <CardHeader>
           <div className="flex items-center gap-3">
             <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-green-500/10">
-              <Terminal className="size-5 text-green-600" />
+              <HugeiconsIcon icon={CommandLineIcon} className="size-5 text-green-600" />
             </div>
             <div>
               <CardTitle>{_(msg`Quick Start`)}</CardTitle>
@@ -181,11 +182,11 @@ export function TemplatesPage() {
         </CardContent>
         <CardFooter className="flex gap-2 border-t bg-muted/50 px-6 py-4">
           <Button variant="outline" className="gap-2">
-            <Github className="size-4" />
+            <HugeiconsIcon icon={Github01Icon} className="size-4" />
             {_(msg`View on GitHub`)}
           </Button>
           <Button variant="outline" className="gap-2">
-            <FolderOpen className="size-4" />
+            <HugeiconsIcon icon={FolderOpenIcon} className="size-4" />
             {_(msg`Documentation`)}
           </Button>
         </CardFooter>
@@ -203,7 +204,7 @@ export function TemplatesPage() {
           <CardFooter>
             <Button variant="ghost" className="gap-2 px-0 hover:bg-transparent">
               {_(msg`Read Docs`)}
-              <ArrowRight className="size-4" />
+              <HugeiconsIcon icon={ArrowRight01Icon} className="size-4" />
             </Button>
           </CardFooter>
         </Card>
@@ -217,7 +218,7 @@ export function TemplatesPage() {
           <CardFooter>
             <Button variant="ghost" className="gap-2 px-0 hover:bg-transparent">
               {_(msg`Join Discord`)}
-              <ArrowRight className="size-4" />
+              <HugeiconsIcon icon={ArrowRight01Icon} className="size-4" />
             </Button>
           </CardFooter>
         </Card>

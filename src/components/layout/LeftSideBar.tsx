@@ -2,17 +2,18 @@ import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
 import { Link } from '@tanstack/react-router';
 import {
-  ChevronRight,
-  Component,
-  FileText,
-  Folder,
-  Forward,
-  Home,
-  LayoutTemplate,
-  MoreHorizontal,
-  Settings,
-  Trash2,
-} from 'lucide-react';
+  ArrowRight01Icon,
+  Delete01Icon,
+  File01Icon,
+  Folder01Icon,
+  Home01Icon,
+  Layout03Icon,
+  MoreHorizontalIcon,
+  PuzzleIcon,
+  Settings01Icon,
+  Share01Icon,
+} from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import type * as React from 'react';
 import {
   Sidebar,
@@ -56,24 +57,24 @@ const DATA = {
   navMain: [
     {
       title: 'Home',
-      icon: Home,
+      icon: Home01Icon,
       url: '/',
     },
     {
       title: 'Components',
-      icon: Component,
+      icon: PuzzleIcon,
       url: '/components',
     },
     {
       title: 'Templates',
-      icon: LayoutTemplate,
+      icon: Layout03Icon,
       url: '/templates',
     },
   ],
   projects: [
     {
       name: 'Project 1',
-      icon: Folder,
+      icon: Folder01Icon,
       items: [
         {
           title: 'Document 1',
@@ -91,7 +92,7 @@ const DATA = {
     },
     {
       name: 'Project 2',
-      icon: Folder,
+      icon: Folder01Icon,
       items: [
         {
           title: 'Document A',
@@ -119,7 +120,7 @@ function SettingsButton() {
 
   return (
     <SidebarMenuButton tooltip="Settings" onClick={handleOpenSettings}>
-      <Settings className="size-4" />
+      <HugeiconsIcon icon={Settings01Icon} className="size-4" />
       <span>{_(msg`Settings`)}</span>
     </SidebarMenuButton>
   );
@@ -142,7 +143,7 @@ export function LeftSideBar({ children, className }: LeftSideBarProps) {
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton tooltip={item.title} asChild>
                     <Link to={item.url}>
-                      <item.icon />
+                      <HugeiconsIcon icon={item.icon} />
                       <span>{item.title}</span>
                     </Link>
                   </SidebarMenuButton>
@@ -166,15 +167,15 @@ export function LeftSideBar({ children, className }: LeftSideBarProps) {
                   <SidebarMenuItem>
                     <SidebarMenuButton asChild tooltip={project.name}>
                       <CollapsibleTrigger className="w-full">
-                        <project.icon />
+                        <HugeiconsIcon icon={project.icon} />
                         <span>{project.name}</span>
-                        <ChevronRight className="ml-auto h-4 w-4 transition-transform duration-300 group-data-[state=open]/collapsible:rotate-90" />
+                        <HugeiconsIcon icon={ArrowRight01Icon} className="ml-auto h-4 w-4 transition-transform duration-300 group-data-[state=open]/collapsible:rotate-90" />
                       </CollapsibleTrigger>
                     </SidebarMenuButton>
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
                         <SidebarMenuAction showOnHover>
-                          <MoreHorizontal />
+                          <HugeiconsIcon icon={MoreHorizontalIcon} />
                           <span className="sr-only">More</span>
                         </SidebarMenuAction>
                       </DropdownMenuTrigger>
@@ -184,16 +185,16 @@ export function LeftSideBar({ children, className }: LeftSideBarProps) {
                         align={isMobile ? 'end' : 'start'}
                       >
                         <DropdownMenuItem>
-                          <Folder className="text-muted-foreground" />
+                          <HugeiconsIcon icon={Folder01Icon} className="text-muted-foreground" />
                           <span>View Project</span>
                         </DropdownMenuItem>
                         <DropdownMenuItem>
-                          <Forward className="text-muted-foreground" />
+                          <HugeiconsIcon icon={Share01Icon} className="text-muted-foreground" />
                           <span>Share Project</span>
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem className="text-destructive focus:bg-destructive/10 focus:text-destructive">
-                          <Trash2 className="text-muted-foreground" />
+                          <HugeiconsIcon icon={Delete01Icon} className="text-muted-foreground" />
                           <span>Delete Project</span>
                         </DropdownMenuItem>
                       </DropdownMenuContent>
@@ -204,7 +205,7 @@ export function LeftSideBar({ children, className }: LeftSideBarProps) {
                           <SidebarMenuSubItem key={subItem.title}>
                             <SidebarMenuSubButton asChild>
                               <Link to={subItem.url}>
-                                <FileText />
+                                <HugeiconsIcon icon={File01Icon} />
                                 <span>{subItem.title}</span>
                               </Link>
                             </SidebarMenuSubButton>
@@ -217,7 +218,7 @@ export function LeftSideBar({ children, className }: LeftSideBarProps) {
               ))}
               <SidebarMenuItem>
                 <SidebarMenuButton className="text-sidebar-foreground/70">
-                  <MoreHorizontal className="text-sidebar-foreground/70" />
+                  <HugeiconsIcon icon={MoreHorizontalIcon} className="text-sidebar-foreground/70" />
                   <span>More</span>
                 </SidebarMenuButton>
               </SidebarMenuItem>

@@ -1,14 +1,18 @@
 import path from 'node:path';
 import { lingui } from '@lingui/vite-plugin';
-import react from '@vitejs/plugin-react';
+import babel from '@rolldown/plugin-babel';
+import react, { reactCompilerPreset } from '@vitejs/plugin-react';
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   plugins: [
-    react({
-      babel: {
-        plugins: ['babel-plugin-react-compiler', '@lingui/babel-plugin-lingui-macro'],
-      },
+    react(),
+    babel({
+      presets: [
+        ['@babel/preset-typescript', { isTSX: true, allExtensions: true }],
+        reactCompilerPreset(),
+      ],
+      plugins: ['@lingui/babel-plugin-lingui-macro'],
     }),
     lingui(),
   ],

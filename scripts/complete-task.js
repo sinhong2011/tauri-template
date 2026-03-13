@@ -81,6 +81,7 @@ function completeTask(taskIdentifier) {
   if (!matchingFile) {
     console.error(`Error: No task found matching "${taskIdentifier}"`);
     console.error(`\nAvailable tasks in tasks-todo/:`);
+    // biome-ignore lint/suspicious/useIterableCallbackReturn: forEach used for side-effects only
     todoFiles.filter((f) => f.endsWith('.md')).forEach((f) => console.error(`   - ${f}`));
     process.exit(1);
   }

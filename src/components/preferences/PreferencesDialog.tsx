@@ -1,6 +1,7 @@
+import { FlashIcon, PaintBrush01Icon, Settings01Icon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { msg } from '@lingui/core/macro';
 import { useLingui } from '@lingui/react';
-import { Palette, Settings, Zap } from 'lucide-react';
 import { useState } from 'react';
 import {
   Sidebar,
@@ -32,17 +33,17 @@ const navigationItems = [
   {
     id: 'general' as const,
     label: msg`General`,
-    icon: Settings,
+    icon: Settings01Icon,
   },
   {
     id: 'appearance' as const,
     label: msg`Appearance`,
-    icon: Palette,
+    icon: PaintBrush01Icon,
   },
   {
     id: 'advanced' as const,
     label: msg`Advanced`,
-    icon: Zap,
+    icon: FlashIcon,
   },
 ] as const;
 
@@ -79,7 +80,7 @@ export function PreferencesDialog() {
                             onClick={() => setActivePane(item.id)}
                             className="w-full"
                           >
-                            <item.icon />
+                            <HugeiconsIcon icon={item.icon} />
                             <span>{_(item.label)}</span>
                           </button>
                         </SidebarMenuButton>

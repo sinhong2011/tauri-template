@@ -1,7 +1,8 @@
 'use client';
 
+import { SidebarLeft01Icon } from '@hugeicons/core-free-icons';
+import { HugeiconsIcon } from '@hugeicons/react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { PanelLeftIcon } from 'lucide-react';
 import type { Transition } from 'motion/react';
 import { Slot } from 'radix-ui';
 import * as React from 'react';
@@ -78,6 +79,7 @@ function SidebarProvider({
       }
 
       // This sets the cookie to keep the sidebar state.
+      // biome-ignore lint/suspicious/noDocumentCookie: sidebar state persistence requires direct cookie access
       document.cookie = `${SIDEBAR_COOKIE_NAME}=${openState}; path=/; max-age=${SIDEBAR_COOKIE_MAX_AGE}`;
     },
     [setOpenProp, open]
@@ -296,7 +298,7 @@ function SidebarTrigger({ className, onClick, ...props }: SidebarTriggerProps) {
       }}
       {...props}
     >
-      <PanelLeftIcon />
+      <HugeiconsIcon icon={SidebarLeft01Icon} />
       <span className="sr-only">Toggle Sidebar</span>
     </Button>
   );
